@@ -26,6 +26,5 @@ Route::middleware('auth')->group(function() {
 	 */
 });
 
-Route::get('/gs', function () {
-	return GS::service1();
-});
+Route::get('/login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
+Route::post('/login', [App\Http\Controllers\LoginController::class, 'authenticate'])->name('authenticate');

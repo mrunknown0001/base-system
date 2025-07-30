@@ -17,7 +17,7 @@ class AuthenticationController extends Controller
             return redirect()->route('dash');
         }
 
-    	$id = GC::decryptString($id);
+    	$id = decryptString($id);
 
     	// Check user if registered to access this system
     	$user = User::whereId($id)->first();
@@ -25,7 +25,8 @@ class AuthenticationController extends Controller
     	if(isset($user)) {
     		
     		if(Auth::loginUsingId($user->id)) {
-                // Login Success
+				// session(['auth_token' => $token, 'token_expires' => $token_expires, 'email' => $email]);
+
                 // Sessions For Current Users
     			return redirect()->route('dash');
     		}
